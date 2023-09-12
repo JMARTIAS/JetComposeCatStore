@@ -1,4 +1,4 @@
-package com.example.jettest.screens
+package com.example.jettest
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
