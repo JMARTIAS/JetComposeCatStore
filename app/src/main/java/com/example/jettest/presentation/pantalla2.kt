@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,7 +17,8 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun Pantalla2(
-    text: String
+    text: String,
+    onBackClick: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
@@ -27,5 +29,13 @@ fun Pantalla2(
             text = text,
             style = TextStyle(color = Color.Black, fontSize = 42.sp, fontWeight = FontWeight.Black)
         )
+
+        // Botón para volver a Pantalla1
+        Button(
+            onClick = { onBackClick() },
+            modifier = Modifier.padding(vertical = 16.dp)
+        ) {
+            Text("Volver a Pantalla 1")
+        }
     }
 }

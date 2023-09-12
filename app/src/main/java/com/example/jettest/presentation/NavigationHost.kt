@@ -29,7 +29,11 @@ fun NavigationHost() {
             arguments = listOf(navArgument("newText") { type = NavType.StringType })
         ) { navBackStackEntry ->
             val newText = navBackStackEntry.arguments?.getString("newText") ?: "Pantalla 2"
-            Pantalla2(newText)
+
+            Pantalla2(newText) {
+                // Lambda para manejar la navegación de vuelta a Pantalla1
+                navController.navigateUp()
+            }
         }
     }
 }
