@@ -16,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -31,24 +32,18 @@ fun Dashboard(
 ) {
     var textValue by remember { mutableStateOf("") }
 
-    Column(
+    Row(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.SpaceAround,
-        horizontalAlignment = Alignment.CenterHorizontally
+
+            .padding(16.dp)
     ) {
-        Text(
-            text = "Dashboard",
-            style = TextStyle(color = Color.DarkGray, fontSize = 42.sp, fontWeight = FontWeight.W500)
-        )
 
         TextField(
             value = textValue,
             onValueChange = { textValue = it },
             label = { Text("Introducir Texto") }
         )
-
+        Spacer(modifier = Modifier.padding(5.dp))
         Button(onClick = { navegarDetailItem(textValue) }) {
             Text("Enviar")
         }
@@ -123,16 +118,18 @@ fun Dashboard(navController: NavController,navegarDetailItem: (String) -> Unit) 
     Spacer(modifier = Modifier.height(20.dp))
     var filteredProducts by remember { mutableStateOf(catProducts) }
     Column(
-        modifier = Modifier.padding(16.dp).fillMaxHeight(Float.MAX_VALUE).fillMaxHeight(Float.MAX_VALUE)
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxHeight(Float.MAX_VALUE)
+            .fillMaxHeight(Float.MAX_VALUE)
     ) {
         Text(
             text = "Tienda de Artículos para Gatos",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
+            style = TextStyle(color = Color.Cyan, fontSize = 22.sp),
             modifier = Modifier.padding(bottom = 16.dp),
             fontFamily = FontFamily.SansSerif
         )
-        Spacer(modifier = Modifier.height(356.dp))
+
         CatProductList(filteredProducts, navController,navegarDetailItem)
     }
 }

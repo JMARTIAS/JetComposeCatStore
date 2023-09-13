@@ -21,44 +21,34 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            // Contenedor principal de la actividad
-            Box(modifier = Modifier)
             Column {
                 Banner()
                 NavigationHost()
-                SectionDivider()
+                SimpleComposable()
             }
-            SectionDivider()
-            // Definir la navegación y las composables
-            val navHostController = rememberNavController()
-            NavHost(
-                navController = navHostController,
-                startDestination = Destinations.Dashboard.route
-            ) {
-                composable(Destinations.Dashboard.route) {
-/*                    Dashboard(
-                        navController = navHostController,
-                        navegarDetailItem = { itemId ->
-                            navController.navigate(Destinations.DetalleItem.createRoute(itemId))
-                        }
-                    )*/
-                }
-            }
+
+
         }
     }
 }
 
 @Composable
 fun SimpleComposable() {
+    // Definir la navegación y las composables
+    val navHostController = rememberNavController()
+    NavHost(
+        navController = navHostController,
+        startDestination = Destinations.Dashboard.route
+    ) {
+        composable(Destinations.Dashboard.route) {
+            Dashboard(
+                navController = navHostController,
+                navegarDetailItem = { itemId ->
+                    // Aquí puedes navegar a la pantalla de detalle con el itemId
+                    // navController.navigate(Destinations.DetalleItem.createRoute(itemId))
+                }
+            )
+        }
 
-}
-
-@Composable
-fun SectionDivider(modifier: Modifier = Modifier) {
-    Box(
-        modifier
-            .fillMaxWidth()
-            .height(1.dp)
-            .background(Color.Gray) // Puedes personalizar el color del divisor
-    )
+    }
 }
